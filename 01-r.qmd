@@ -1,0 +1,112 @@
+# ¿Qué es R?
+
+## R es un lenguaje de programación
+Un lenguaje de programación es un __conjunto de intrucciones y reglas__ que permite a los humanos comunicar órdenes a una computadora.
+
+## R
+
+R fue originalmente desarrollado para realizar __análisis estadístico__.
+
+. . .
+
+Sin embargo, actualmente también se ha consolidado como una potente herramienta para la __manipulación de datos__ en general en diferentes áreas como las ciencias sociales, la ecología, la medicina, las finanzas, el marketing, etc.
+
+## ¿Por qué aprender R?
+::: {.incremental}
+* Especializado en análisis estadístico
+* Herramientas potentes para la manipulación y visualización de datos
+* Amplia comunidad y soporte
+* Gran cantidad de paquetes y extensiones
+* Interoperabilidad
+* Gratuito y de código abierto
+* Ampliamente utilizado en la investigación académica
+* Creciente demanda en la industria
+:::
+
+## COVID-19 Tracker
+
+![](images/covid-tracker-dashboard.png){.absolute top=150 left=45}
+<https://vac-lshtm.shinyapps.io/ncov_tracker/>
+
+## Reproducibilidad
+
+![](images/covid-tracker-github.png){.absolute top=150 left=45}
+<https://github.com/eparker12/nCoV_tracker>
+
+## Instalación de R (Windows) {.smaller}
+
+Para instalar R (Agosto de 2024):
+
+1. Ir a la web de CRAN (_The Comprehensive R Archive Network_) en <https://cran.r-project.org/>.
+2. Dar click en [Donwload R for Windows](https://cran.r-project.org/bin/windows/).
+3. Dar click en el subdirectorio [base](https://cran.r-project.org/bin/windows/base/).
+4. Dar click en [Download R-4.4.1 for Windows](https://cran.r-project.org/bin/windows/base/R-4.4.1-win.exe).
+5. Luego de que se haya finalizado la descarga, ejecutar el archivo __R-4.4.1-win.exe__. En caso Windows preguntara si deseamos que la aplicación haga cambios en el sistema, respondemos que __Sí__.
+6. Elegir el idioma para la instalación.
+7. Para una instalación por defecto (lo recomendado), solo dar __Next__ o __Siguiente__ a todos los pasos hasta que haya finalizado la instalación.
+
+## Instalación de R
+
+Para mayor detalle sobre la instalación, incluyendo cómo instalar R en macOS, revisar el capítulo de [Pre-requisitos](https://upch-r4pubh.netlify.app/pre-requisitos) del libro [r4pubh](https://upch-r4pubh.netlify.app/).
+
+## Código
+
+Un "código" se refiere al __conjunto de instrucciones escritas__ en un lenguaje de programación, como R, que una computadora puede interpretar y ejecutar.
+
+. . .
+
+El código es la __base de todos los programas y aplicaciones__ que utilizamos en nuestra vida diaria, desde simples calculadoras hasta complejos sistemas operativos y aplicaciones web.
+
+## Integrated Development Environments (IDE)
+
+Así como para escribir documentos usamos Word, también existen programas que nos permiten escribir código de manera eficiente.
+
+. . .
+
+A estos programas se les llama _Integrated Development Environments_ (IDE).
+
+## RStudio
+
+RStudio es un IDE que fue desarrollado particularmente para escribir código en R.
+
+. . .
+
+Existen otros IDE donde podemos escribir código en R, pero ninguno es tan eficiente para este lenguaje como RStudio (hasta ahora).
+
+## Instalación de RStudio (Windows) 
+
+Para instalar RStudio Desktop (Agosto de 2024):
+
+1. Instalar R.
+2. Ir a la web <https://posit.co/download/rstudio-desktop/> o buscar en el navegador web "rstudio download".
+3. Dar click en [DOWNLOAD RSTUDIO FOR WINDOWS](https://download1.rstudio.org/electron/windows/RStudio-2024.04.2-764.exe). Se descargará el instalador con nombre __RStudio-2024.04.2-764.exe__.
+3. Ejecutar el instalador y seguir las instrucciones. Para una instalación por defecto, aceptar todas las configuraciones predeterminadas.
+
+# Interfaz de RStudio
+
+## Proyectos en RStudio
+
+Un proyecto en RStudio es una funcionalidad que proporciona un __entorno de trabajo organizado y gestionado__ para trabajar con R.
+
+. . .
+
+Es __recomendable__ crear un proyecto de RStudio asociado a cada proyecto de análisis de datos con R que realicemos.
+
+. . .
+
+Al crear un proyecto en RStudio, estamos creando una __carpeta dedicada__ a nuestro proyecto de análisis de datos con R.
+
+
+## Crear un proyecto en RStudio
+
+Para crear un proyecto en RStudio:
+
+1. Ir a `File > New Project`.
+2. Selecciona si deseas crear un proyecto nuevo, abrir un proyecto existente o crear un proyecto desde un repositorio de control de versiones (como Git).
+3. Sigue las instrucciones para configurar el nuevo proyecto.
+
+
+
+
+
+

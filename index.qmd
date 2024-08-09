@@ -1,0 +1,15 @@
+---
+title: "Introducción a R para el análisis de datos"
+author: "Diego Villa Almeyda"
+format: revealjs
+editor: source
+execute: 
+  echo: true
+  eval: false
+---
+
+# ¡Bienvenidos!
+
+{{< include 00-presentacion.qmd >}}
+{{< include 01-r.qmd >}}
+{{< include 02-estructuras.qmd >}}

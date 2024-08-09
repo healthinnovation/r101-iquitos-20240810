@@ -1,0 +1,785 @@
+## ¡Creemos nuestro primer programa con R!
+
+![](images/cat-crazy-cat.gif){.absolute top="170" left="325" width="410" height="400"}
+
+## Crear un script de R
+
+Un *script* de R es un archivo de texto que contiene el código en R que usaremos para darle comandos a la computadora.
+
+<br>
+
+Los scripts de R tienen extensión `.R`. Por ejemplo, para crear un script con el nombre `hola.R` ingresamos en la consola:
+
+```{r}
+#| eval: true
+file.create("hola.R")
+```
+
+## Files
+
+Veremos que en la pestaña `Files` en RStudio aparecerá el script de R que hemos creado. Esta pestaña sirve como un **explorador de archivos**.
+
+. . .
+
+En la parte superior podemos ver la ruta de la carpeta donde nos encontramos trabajando, la cual será la carpeta donde creamos el proyecto de RStudio.
+
+## Editor
+
+En `Files` podemos darle click al archivo `hola.R` y se abrirá un panel de edición, el cual se le conoce como el editor de RStudio.
+
+. . .
+
+En este editor podemos escribir las líneas de código que queramos dentro del script y también ejecutar el código línea por línea, por partes, o en su totalidad.
+
+## hola.R
+
+En el editor, escribamos:
+
+```{r}
+print("¡Hola, mundo!")
+```
+
+Y luego, con el cursor en la misma línea de código, demos click en `Run` o presionemos `Ctrl + Enter` para ejecutarlo.
+
+## Consola
+
+En la consola veremos:
+
+```{r}
+#| eval: true
+print("¡Hola, mundo!")
+```
+
+. . .
+
+La consola es el lugar donde el código se ejectua. 
+
+. . .
+
+Con "ejecutar" nos referimos a que los comandos que hemos escrito en R se traducen al lenguaje máquina para que la computadora nos pueda entender y devolver el resultado deseado.
+
+## ¡Hola, mundo!
+
+¡Felicidades 🎉! Has creado tu primer programa con R.
+
+## Funciones
+
+Para crear nuestro primer programa con R, hemos utilizado una función llamada `print()`.
+
+. . .
+
+Una función es un __módulo de código__ diseñado para realizar una tarea específica. 
+
+. . .
+
+En R, se denota a una función por su nombre, seguido de paréntesis `()`. Por ejemplo: `print()`. 
+
+## Funciones
+
+Las funciones reciben un conjunto de entradas o argumentos, que sirven para modificar su comportamiento, y devuelven una o varias salidas.
+
+![](images/funcion.png){.absolute top=300 left=20}
+
+## Funciones
+
+En nuestro programa, el argumento de `print()` fue `"¡Hola, mundo"`. Los argumentos se ingresan en una función separados por una coma.
+
+. . .
+
+La tarea específica de esta función es imprimir en la consola el argumento. La salida es el mismo argumento, solo que en este caso se devuelve de manera silenciosa.
+
+## Página de ayuda
+
+Todas las funciones tienen una página de ayuda, donde se tiene documentado cómo usar la función y los argumentos que recibe.
+
+. . .
+
+Para acceder a la página de ayuda, en la consola ingresar el nombre de la función precedida por un símbolo de interrogación `?`:
+
+```{r}
+?print
+```
+
+## Página de ayuda
+
+La página de ayuda se mostrará en la pestaña de `Help`.
+
+. . .
+
+También es posible usar esta pestaña para buscar la página de ayuda de una función.
+
+## Errores
+
+¿Qué pasa si en vez de `print` escribimos `prin`?
+
+```{r}
+#| eval: true
+#| error: true
+prin("¡Hola, mundo!")
+```
+
+. . .
+
+Los mensajes de error de R nos precisan en qué parte del código hay un error.
+
+. . .
+
+Esto nos ayuda a la depuración o _debugging_ de nuestro código.
+
+## Entradas de usuario
+
+¿Cómo haríamos si quisieramos saludar a un usuario en particular?
+
+. . .
+
+En R, podemos preguntarle su nombre al usuario utilizando la función `readline()`. 
+
+. . .
+
+El argumento de esta función es el mensaje que queremos mostrarle al usuario cuando le pidamos su nombre:
+
+```{r}
+readline("¿Cuál es tu nombre? ")
+```
+
+## Entradas de usuario
+
+`readline()` devuelve lo que hayamos ingresado en la consola:
+
+```{r}
+readline("¿Cuál es tu nombre? ")
+```
+
+## Saludo
+
+¿Cómo armamos el saludo?
+
+```{r}
+readline("¿Cuál es tu nombre? ")
+print("Hola, Diego")
+```
+
+## Saludo
+
+Podemos usar el botón de `Source` para ejectuar todo el código en este script.
+
+```{r}
+readline("¿Cuál es tu nombre? ")
+print("Hola, Diego")
+```
+
+## Saludo
+
+¿Qué pasa si ingreso otro nombre?
+
+```{r}
+readline("¿Cuál es tu nombre? ")
+print("Hola, Diego")
+```
+
+## Objetos
+
+Un __objeto__ en R sirve para almacenar información. 
+
+. . .
+
+Podemos darle un nombre a un objeto, y asignarle la información que queramos. 
+
+. . .
+
+Así, cada vez que queramos usar la información almacenada, solo debemos llamar al nombre del objeto.
+
+## Objetos
+
+Almacenemos la salida de la función `readline()` en un objeto llamado `nombre`:
+
+```{r}
+nombre <- readline("¿Cuál es tu nombre? ")
+```
+
+El símbolo `<-` sirve para __asignar__ o almacenar la salida de `readline()` al objeto de nombre `nombre`.
+
+Vemos que en la pestaña de `Environment` se ha creado un objeto con el valor de "Diego".
+
+## Objetos
+
+Ahora veamos el saludo completo:
+
+```{r}
+nombre <- readline("¿Cuál es tu nombre? ")
+print("Hola, nombre")
+```
+
+¿Por qué no sale mi nombre?
+
+## Cadena de caracteres
+
+Hasta ahora, hemos usado texto representado como una __cadena de caracteres__ para escribir los saludos.
+
+. . .
+
+Las cadenas de caracteres, o simplemente caracteres, se escriben en R dentro de comillas dobles (`""`).
+
+## Cadena de caracteres
+
+Al incluir `nombre` dentro de las comillas en el texto del saludo, esta cadena se toma literalmente.
+
+. . .
+
+¿Cómo podríamos incluir los caracteres almacenados en el objeto `nombre`?
+
+## paste()
+
+Una opción es usar la función `paste()`. Esta función convierte sus argumentos a cadenas de caracteres (si es que no lo son) y los __concatena__:
+
+```{r}
+nombre <- readline("¿Cuál es tu nombre? ")
+saludo <- paste("Hola, ", nombre)
+print(saludo)
+```
+
+## paste()
+
+¿Por qué hay un espacio de más entre "Hola, " y "Diego"?
+
+. . .
+
+Si revisamos la página de ayuda de `paste()` vemos que uno de sus argumentos es `sep`, el cual sirve como separador entre las cadenas que se quieren concatenar.
+
+. . .
+
+Por defecto, `sep` tiene el valor de `" "`.
+
+## paste()
+
+Si cambiamos el valor de `sep` a `""`, vemos que ya no hay un espacio de más en el saludo:
+
+```{r}
+nombre <- readline("¿Cuál es tu nombre? ")
+saludo <- paste("Hola, ", nombre, sep = "")
+print(saludo)
+```
+
+## paste0()
+
+Sin embargo, alguien creó una función cuyo argumento `sep` ya tiene el valor por defecto `""`:
+
+```{r}
+nombre <- readline("¿Cuál es tu nombre? ")
+saludo <- paste0("Hola, ", nombre, sep = "")
+print(saludo)
+```
+
+## Composición de funciones
+
+Podríamos haber escrito el mismo código en una sola línea:
+
+```{r}
+print(paste0("Hola, ", readline("¿Cuál es tu nombre? "), sep = ""))
+```
+
+. . .
+
+A esto se le llama __composición de funciones__.
+
+. . .
+
+Obtenemos el mismo resultado. Pero, ¿es esta la mejor forma de escribirlo?
+
+## Comentarios
+
+Podemos escribir notas en nuestro código para nosotros mismos o para otras personas usando __comentarios__. Para insertar un comentario, se escribe un numeral (`#`) al inicio de la línea:
+
+```{r}
+# Preguntamos el nombre
+nombre <- readline("¿Cuál es tu nombre? ")
+
+# Creamos el saludo
+saludo <- paste0("Hola, ", nombre, sep = "")
+
+# Saludamos al usuario
+print(saludo)
+```
+
+## Conteo de casos
+
+¡Trabajemos ahora con datos! Escribamos un programa que nos permita ingresar el conteo de casos confirmado de tres enfermedades:
+
+```{r}
+readline("Ingresa el número de casos de Dengue: ")
+readline("Ingresa el número de casos de Malaria: ")
+readline("Ingresa el número de casos de Leptospirosis: ")
+```
+
+## Conteo de casos
+
+```{r}
+dengue <- readline("Ingresa el número de casos de Dengue: ")
+malaria <- readline("Ingresa el número de casos de Malaria: ")
+lepto <- readline("Ingresa el número de casos de Leptospirosis: ")
+```
+
+## Aritmética
+
+R permite realizar operaciones aritméticas básicas usando los siguientes operadores:
+
+* `+` para sumar,
+* `-` para restar,
+* `*` para multiplicar (multiplicación escalar),
+* y `/` para dividir.
+
+## Conteo de casos
+
+```{r}
+dengue <- readline("Ingresa el número de casos de Dengue: ")
+malaria <- readline("Ingresa el número de casos de Malaria: ")
+lepto <- readline("Ingresa el número de casos de Leptospirosis: ")
+
+total <- dengue + malaria + lepto
+
+print(paste0("El número total de casos es: ", total))
+```
+
+## Modos de almacenamiento
+
+¿Por qué nos sale error? Vemos que `Environment` los valores que hemos ingresado se han guardado como cadenas de caracteres.
+
+. . .
+
+¿Se pueden sumar cadenas de caracteres (texto)?
+
+## Modos de almacenamiento
+
+R tiene diferentes modos para guardar información:
+
+* `character` para caracteres o cadenas de caracteres,
+* `double` para números decimales,
+* `integer` para números enteros,
+* etc.
+
+También se les conoce como __tipo de dato__.
+
+## Coerción
+
+R permite transformar el modo de almacenamiento de un objeto coercitivamente usando funciones:
+
+* `as.character()` para cambiar a modo `character`,
+* `as.double()` para cambiar a modo `double`,
+* `as.integer()` para cambiar a modo `integer`,
+* etc.
+
+## Coerción
+
+Estas funciones botarán un mensaje de error si es no es posible hacer la transformación. 
+
+. . .
+
+Por ejemplo, no es posible convertir `"Diego"` a un número, pero sí podemos convertir `"32"` a un número.
+
+## Conteo de casos
+
+Apliquemos el concepto de coerción:
+
+```{r}
+dengue <- readline("Ingresa el número de casos de Dengue: ")
+malaria <- readline("Ingresa el número de casos de Malaria: ")
+lepto <- readline("Ingresa el número de casos de Leptospirosis: ")
+
+as.integer(dengue)
+as.integer(malaria)
+as.integer(lepto)
+
+total <- dengue + malaria + lepto
+
+print(paste0("El número total de casos es: ", total))
+```
+
+## Conteo de casos
+
+Los cambios de modo de almacenamiento no se hacen automáticamente. Es necesario guardar o actualizar los valores con el nuevo modo de almacenamiento:
+
+```{r}
+dengue <- readline("Ingresa el número de casos de Dengue: ")
+malaria <- readline("Ingresa el número de casos de Malaria: ")
+lepto <- readline("Ingresa el número de casos de Leptospirosis: ")
+
+dengue <- as.integer(dengue)
+malaria <- as.integer(malaria)
+lepto <- as.integer(lepto)
+
+total <- dengue + malaria + lepto
+
+print(paste0("El número total de casos es: ", total))
+```
+
+## Conteo de casos
+
+Poder acortar el código usando composición de funciones:
+
+```{r}
+dengue <- as.integer(readline("Ingresa el número de casos de Dengue: "))
+malaria <- as.integer(readline("Ingresa el número de casos de Malaria: "))
+lepto <- as.integer(readline("Ingresa el número de casos de Leptospirosis: "))
+
+total <- dengue + malaria + lepto
+
+print(paste0("El número total de casos es: ", total))
+```
+
+## Conteo de casos
+
+¿Qué pasaría si tuviéramos que sumar muchos valores? Definitivamente, tipear `+` muchas veces no es eficiente.
+
+Afortunadamente, R tiene una función llamada `sum()` que permite calcular la suma de sus argumentos:
+
+```{r}
+dengue <- as.integer(readline("Ingresa el número de casos de Dengue: "))
+malaria <- as.integer(readline("Ingresa el número de casos de Malaria: "))
+lepto <- as.integer(readline("Ingresa el número de casos de Leptospirosis: "))
+
+total <- sum(dengue, malaria, lepto)
+
+print(paste0("El número total de casos es: ", total))
+```
+
+## Tablas
+
+Una __tabla__ es un arreglo de información en filas y columnas:
+
+![](images/table.png){.absolute top=200 left=20}
+
+## Tablas
+
+Podemos usar esta tabla para calcular el número de casos total de dengue:
+
+![](images/table-dengue.png){.absolute top=200 left=20}
+
+## Tablas
+
+O el número total de casos confirmados:
+
+![](images/table-confirmados.png){.absolute top=200 left=20}
+
+## Tablas
+
+A estas operaciones se les llama __tabulaciones__.
+
+## Archivos CSV
+
+Una forma popular de almacenar tablas es usando archivos de valores separados por coma o CSV (_Comma Separated Values_). Por ejemplo, nuestra tabla en formato CSV se veería así:
+
+```
+enfermedad, confirmados, probables
+Dengue, 37, 63
+Malaria, 43, 107,
+Leptospirosis, 25, 44
+
+```
+
+## Archivos CSV
+
+Creemos el archivo CSV de nuestra tabla usando las opciones `New File > Text File` en RStudio. Dentro del archivo en blanco, ingresmos los valores separados por coma y luego guardemos el archivo con el nombre `casos.csv`
+
+. . .
+
+Es importante asegurarse que el nombre del archivo tenga la extensión `.csv`.
+
+
+## Tablas
+
+Creemos un nuevo script de R para realizar las tabulaciones:
+
+```{r}
+file.create("tabulacion.R")
+```
+
+## Leer un archivo CSV
+
+R tiene una función para leer un archivo con formato de tabla llamada `read.table()`. El primer argumento de esta función es la ruta donde se ubica el archivo:
+
+```{r}
+casos <- read.table("casos.csv")
+```
+
+Podemos ver la tabla usando la función `View()`:
+
+```{r}
+View(casos)
+```
+
+## Leer un archivo CSV
+
+R tiene una función para leer un archivo con formato de tabla llamada `read.table()`. El primer argumento de esta función es la ruta donde se ubica el archivo:
+
+```{r}
+casos <- read.table("casos.csv")
+```
+
+Podemos ver la tabla usando la función `View()`:
+
+```{r}
+View(casos)
+```
+
+¡Esto no se ve bien!
+
+## Leer un archivo CSV
+
+Veamos la página de ayuda de `read.table()`. Vemos que esta función posee un argumento llamado `sep` para indicar qué separador de columnas tiene el archivo que queremos leer. En nuestro caso, el separador es la coma (`","`):
+
+```{r}
+casos <- read.table("casos.csv", sep = ",")
+View(casos)
+```
+
+¡Vamos bien!
+
+## Leer un archivo CSV
+
+Además, `read.table()` tiene otro argumento llamado `header` el cual puede tomar los valores lógicos `TRUE` o `FALSE` dependiendo de si nuestro archivo tiene los nombres de las columna en la primera línea o no, respectivamente. En nuestro caso, los nombres de las columnas sí están en la primera fila:
+
+```{r}
+casos <- read.table("casos.csv", sep = ",", header = TRUE)
+View(casos)
+```
+
+¡Ahora sí tenemos nuestra tabla!
+
+## Leer un archivo CSV
+
+Para mejorar la legibilidad del código, podemos escribir los argumentos en líneas separadas:
+
+```{r}
+casos <- read.table(
+  "casos.csv", 
+  sep = ",", 
+  header = TRUE
+)
+View(casos)
+```
+
+## Leer un archivo CSV
+
+Los programadores son flojos. Uno de ellos creó una función llamada `read.csv()` que hace lo mismo que `read.table()` pero con los argumentos `sep = ","` y `header = TRUE` por defecto:
+
+```{r}
+casos <- read.csv("casos.csv")
+View(casos)
+```
+
+## Data frames
+
+La salida que nos devuelve la función `read.csv()` es un _data frame_. Un data frame en R es un modo de almacenamiento bidimensional (filas y columnas) que sirve para almacenar datos tabulares.
+
+![](images/data-frame.png){.absolute top=300 left=20}
+
+## Notación de corchetes
+
+Podemos realizar diversas operaciones sobre un data frame, como acceder a los datos de las filas o columnas usando la notación de corchetes:
+
+![](images/bracket.png){.absolute top=250 left=20}
+
+## Notación de corchetes
+
+Por ejemplo, para acceder al número de casos confirmados de Dengue (el primer valor de la segunda columna):
+
+![](images/bracket-12.png){.absolute top=230 left=20}
+
+## Notación de corchetes
+
+Si quisiéramos acceder a todos los valores de una columna, demos el blanco el lugar de la fila. Por ejemplo, para acceder a la columna de casos confirmados:
+
+![](images/bracket-col.png){.absolute top=250 left=20}
+
+## Notación de corchetes
+
+En R:
+
+```{r}
+casos[, 3]
+```
+
+## Acceder a columnas
+
+¿Qué pasaría si cambio el orden de las columnas? Tendría que estar actualizando el número de la columna a la cual quiero acceder. Es más fácil acceder a los datos de una columna por su nombre.
+
+## Acceder a columnas
+
+En R, para acceder a una columna por su nombre escribimos el nombre del data frame, seguido del símbolo `$` y el nombre de la columna. Por ejemplo, para acceder a la columna de los casos confirmados:
+
+![](images/df-confirmados.png){.absolute top=300 left=20}
+
+## Acceder a columnas
+
+En R:
+
+```{r}
+casos$confirmados
+```
+
+## Vectores
+
+Cuando accedemos a una columna usando el símbolo `$`, R nos devuelve un __vector__. Un vector es una lista de elementos del mismo tipo. Es decir, la salida no es más un data frame, sino un vector de datos.
+
+![](images/confirmados-vector.png){.absolute top=310 left=20}
+
+## Vectores
+
+Un vector es un arreglo unidimensional de datos, y por tanto también acepta la notación de corchetes. Por ejemplo, para acceder al primer elemento del vector de casos confirmados:
+
+```{r}
+casos$confirmados[1]
+```
+
+En un vector, ya no es necesario ingresar el número de fila y de columna, ya que solo tiene una dimensión.
+
+## Vectores
+
+¿Cómo podríamos calcular el número total de casos confirmados? Una opción es la siguiente:
+
+```{r}
+casos$confirmados[1] + casos$confirmados[2] + casos$confirmados[3]
+```
+
+Sin embargo, ¿qué pasaría si tenemos más de tres enfermedades? ¿Es esto eficiente?
+
+## Vectores
+
+Intentemos lo siguiente:
+
+```{r}
+sum(casos$confirmados)
+```
+
+¿Por qué funciona?
+
+## Vectorización
+
+Las funciones en R están __vectorizadas__. Es decir, operan sobre todos los elementos de un vector sin tener que operar uno por uno. Por esta razón, podemos usar la función `sum()` para realizar la suma de todos los elementos del vector:
+
+```{r}
+sum(casos$confirmados)
+```
+
+## Todo en R son vectores
+
+La cadena de caracteres que usamos para el salud es un vector (de un solo elemento):
+
+```{r}
+print("¡Hola, mundo!")
+```
+
+Incluso un data frame es una colección de vectores (columnas).
+
+```{r}
+casos$enfermedad
+casos$confirmados
+casos$probables
+```
+
+## Tablas
+
+¿Cómo podría calcular el número total de casos para cada enfermedad?
+
+![](images/total-enfermedad.png){.absolute top=250 left=20}
+
+## Tablas
+
+Una opción en R:
+
+```{r}
+# Para Dengue
+casos$confirmados[1] + casos$probables[1]
+
+# Para Malaria
+casos$confirmados[2] + casos$probables[2]
+
+# Para Leptospirosis
+casos$confirmados[3] + casos$probables[3]
+```
+
+¿Qué tal si tengo muchas enfermedades? ¿Habrá una formas más eficiente de hacerlo?
+
+## Aritmética vectorial
+
+Como todo en R es un vector, es posible aplicar la aritmética vectorial para calcular la suma de los elementos de cada vector según su posición:
+
+![](images/suma-vectorial.png){.absolute top=280 left=20}
+
+## Aritmética vectorial
+
+El resultado de realizar una operación aritmetica entre vectors __siempre será también un vector__.
+
+## Aritmética vectorial
+
+En R:
+
+```{r}
+casos$confirmados + casos$probables
+```
+
+## Aritmética vectorial
+
+También podríamos usar la notación de corchetes:
+
+```{r}
+casos[, 2] + casos[, 3]
+```
+
+## Aritmética vectorial
+
+Sin embargo, hay que tener cuidado con la siguiente notación:
+
+```{r}
+casos[2] + casos[3]
+```
+
+Esta notación devuelve un data frame y no un vector. Si bien los totales son correctos, es más conveniente tener los resultados en un vector que en un data frame, ya que el primeor es más sencillo de manipular.
+
+## Crear una nueva columna
+
+Podemos asignar los totales calculados a una nueva columna en la tabla usando el símbolo `$` seguido del nombre de la nueva columna: 
+
+```{r}
+casos$totales <- casos$confirmados + casos$probables
+View(casos)
+```
+
+Esto se puede hacer siempre y cuando la nueva columna tenga el mismo número de filas de la tabla.
+
+## Escribir un archivo CSV
+
+Podemos escribir un nuevo archivo CSV con nuestra nueva tabla usando la función `write.csv()`. Si vemos la documentación, el primer argumento es el data frame y el segundo la ruta donde se va a escribir el archivo: 
+
+```{r}
+write.csv(casos, "totales.csv")
+```
+
+## Nombres de fila
+
+Si abrimos el archivo, vemos que tiene la siguiente estructura:
+
+```
+"","enfermedad","confirmados","probables","totales"
+"1","Dengue",37,63,100
+"2","Malaria",43,107,150
+"3","Leptospirosis",25,44,69
+
+```
+
+Vemos que además de las columnas que tenía el data frame, se añadió una columna que indica la posición de las filas. Esta columna sirve para nombrar las filas.
+
+## Nombres de fila
+
+Podemos decirle a `write.csv()` si queremos (`TRUE`) o no queremos (`FALSE`) nombres de fila usando el argumento `row.names`:
+
+```{r}
+write.csv(casos, "totales.csv", row.names = FALSE)
+```
+
+## Dengue
+
+
+
+
+

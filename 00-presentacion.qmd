@@ -1,0 +1,13 @@
+## Diego Villa Almeyda
+
+* BSc en Estadística Informática de la Universidad Nacional Agraria La Molina
+
+
+## Agenda
+
+* ¿Qué es R?
+* Representando datos
+* Tranformando datos
+* Funciones
+* _Tidy data_
+* Visualizando datos

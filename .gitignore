@@ -47,3 +47,15 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+
+# Data
+data/datos_abiertos_vigilancia_dengue.csv
+
+# HTML
+*.html
+
+# Jupyter
+*.ipynb
+
+# Files
+*_files
