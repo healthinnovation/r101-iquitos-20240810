@@ -779,7 +779,164 @@ write.csv(casos, "totales.csv", row.names = FALSE)
 
 ## Dengue
 
+Creemos un nuevo script con el nombre `dengue.R` y usémoslo para importar desde una página web un archivo CSV con los casos notificados de Dengue en la provincia de Maynas en los años 2018 y 2019:
 
+```{r}
+url <- "https://raw.githubusercontent.com/healthinnovation/r101-iquitos-20240810/main/data/dengue.csv"
+dengue <- read.csv(url)
+```
 
+## Número de filas
 
+¿Cuál es el número de filas de este data frame?
+
+```{r}
+nrow(dengue)
+```
+
+## Número de columnas
+
+¿Cuál es el número de columnas de este data frame?
+
+```{r}
+ncol(dengue)
+```
+
+## Enfermedades
+
+¿Qué enfermedades se notificaron en esta tabla?
+
+```{r}
+dengue$enfermedad
+```
+
+## Valores únicos
+
+Para ver los valores únicos de una variable, podemos usar la función `unique()`:
+
+```{r}
+unique(dengue$enfermedad)
+```
+
+## Dengue
+
+Veamos la variable de código de localidad:
+
+```{r}
+dengue$localcod
+```
+
+## Dengue
+
+¿Qué son estos valores `NA`?
+
+## Valores especiales
+
+`NA` en R significa _Not Available_ o "no disponible". Es un valor especial que indica que debería existir un dato en esa posición, pero por alguna razón no se encuentra disponible o está perdido.
+
+## Valores especiales
+
+R tiene otros valores especiales:
+
+* `NaN` de _Not a Number_, sirve para indicar un valor que es imposible de calcular o no es determinado (división entre cero).
+* `Inf` y `-Inf` sirven para indicar valores infinitos positivos y negativos, respectivamente.
+* `NULL` representa a un objeto nulo. Es la representación de "la nada". Es posible tener un vector de `NA`s pero no de `NULL`s. Un vector que conciente un `NULL` es considerado `NULL`.
+
+## Valores especiales
+
+R tiene otros valores especiales:
+
+* `NaN` de _Not a Number_, sirve para indicar un valor que es imposible de calcular o no es determinado (división entre cero).
+* `Inf` y `-Inf` sirven para indicar valores infinitos positivos y negativos, respectivamente.
+* `NULL` representa a un objeto nulo. Es la representación de "la nada". Es posible tener un vector de `NA`s pero no de `NULL`s. Un vector que conciente un `NULL` es considerado `NULL`.
+
+## Dengue
+
+Veamos la variable `sexo`:
+
+```{r}
+dengue$sexo
+```
+
+## Dengue
+
+Veamos los valores únicos de la variable `sexo`:
+
+```{r}
+unique(dengue$sexo)
+```
+
+Vemos que esta variable toma dos valores: `F` de femenino y `M` de masculino.
+
+## Factores
+
+Un tipo de dato en R bastante útil para manejar estos tipos de variables son los _factores_.
+
+. . .
+
+Un __factor__ es un modo de almacenamiento utilizado para representar variables categóricas. Es decir, variables que tienen un número limitado y fijo de valores posibles, llamados niveles.
+
+## Factores
+
+Podemos definir un factor usando la función `factor()`. Por ejemplo, usando la variable `sex`:
+
+```{r}
+factor(dengue$sexo)
+```
+
+Vemos que ahora R reconoce que la variable `sex` tiene dos niveles o categorías: `F` y `M`.
+
+## Etiquetas de los niveles
+
+Podemos darle etiquetas a los niveles usando el argumento `labels`. Este argumento recibe un vector de la misma dimensión de los niveles de la variable con las etiquetas que queramos según el orden de los niveles.
+
+. . .
+
+Es decir, el primer elemento del vector de etiquetas es la etiqueta del primer nivel, el segundo elemento del vector es la etiqueta del segundo nivel, y así sucesivamente.
+
+## Crear un vector
+
+Para crear un vector en R podemos usar la función `c()`. Por ejemplo, para crear un vector con las etiquetas `Femenino` y `Masculino`:
+
+```{r}
+c("Femenino", "Masculino")
+```
+
+## Etiquetas de los niveles
+
+Ahora pasamos el vector al argumento `labels` de la función `factor()`:
+
+```{r}
+factor(dengue$sex, labels = c("Femenino", "Masculino"))
+```
+
+## Cambiar el orden de los niveles
+
+Si quisiéramos cambiar el orden de los niveles, podemos usar el argumento `levels` de la función `factor()`. Este argumento recibe un vector con los niveles en el orden que queramoss:
+
+```{r}
+factor(
+  dengue$sex,
+  levels = c("M", "F"),
+  labels = c("Masculino", "Femenino")
+)
+```
+
+¡Cuidado! Hay que cambiar el orden de las etiquetas también.
+
+## ¿Por qué trabajar con factores?
+
+Digamos que tenemos el siguiente vector:
+
+```{r}
+sexo <- c("F", "F", "M", "M", "J")
+```
+
+Definimos el factor solo con los niveles `F` y `M`:
+
+```{r}
+factor(sexo, levels = c("F", "M"))
+```
+
+Vemos que `J` fue reemplazado con un `NA`. Los factores son útiles para asegurar la integridad de la variable categórica.
 

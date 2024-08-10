@@ -1,5 +1,5 @@
 ---
-title: "Introducción a R para el análisis de datos"
+title: "Introducción a R para el manejo de datos"
 author: "Diego Villa Almeyda"
 format: revealjs
 editor: source
