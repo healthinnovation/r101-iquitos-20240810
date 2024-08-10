@@ -1,3 +1,5 @@
+# Representando datos
+
 ## ¡Creemos nuestro primer programa con R!
 
 ![](images/cat-crazy-cat.gif){.absolute top="170" left="325" width="410" height="400"}
@@ -331,6 +333,7 @@ R permite realizar operaciones aritméticas básicas usando los siguientes opera
 ## Conteo de casos
 
 ```{r}
+#| error: true
 dengue <- readline("Ingresa el número de casos de Dengue: ")
 malaria <- readline("Ingresa el número de casos de Malaria: ")
 lepto <- readline("Ingresa el número de casos de Leptospirosis: ")
@@ -381,6 +384,7 @@ Por ejemplo, no es posible convertir `"Diego"` a un número, pero sí podemos co
 Apliquemos el concepto de coerción:
 
 ```{r}
+#| error: true
 dengue <- readline("Ingresa el número de casos de Dengue: ")
 malaria <- readline("Ingresa el número de casos de Malaria: ")
 lepto <- readline("Ingresa el número de casos de Leptospirosis: ")
@@ -784,6 +788,14 @@ Creemos un nuevo script con el nombre `dengue.R` y usémoslo para importar desde
 ```{r}
 url <- "https://raw.githubusercontent.com/healthinnovation/r101-iquitos-20240810/main/data/dengue.csv"
 dengue <- read.csv(url)
+```
+
+## Dengue
+
+Guardémoslo para poder usarlo luego:
+
+```{r}
+write.csv(dengue, "dengue.csv", row.names = FALSE)
 ```
 
 ## Número de filas

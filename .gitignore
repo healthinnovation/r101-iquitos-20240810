@@ -40,7 +40,7 @@ vignettes/*.pdf
 .Renviron
 
 # pkgdown site
-docs/
+# docs/
 
 # translation temp files
 po/*~
@@ -53,11 +53,4 @@ data/datos_abiertos_vigilancia_dengue.csv
 data/districts_2017census.csv
 data/mintemp_20170101-20221231.csv
 
-# HTML
-*.html
-
-# Jupyter
-*.ipynb
-
-# Files
-*_files
+/.quarto/

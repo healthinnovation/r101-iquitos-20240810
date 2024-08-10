@@ -6,6 +6,9 @@ editor: source
 execute: 
   echo: true
   eval: false
+project:
+  type: website
+  output-dir: docs
 ---
 
 # ¡Bienvenidos!
@@ -13,3 +16,5 @@ execute:
 {{< include 00-presentacion.qmd >}}
 {{< include 01-r.qmd >}}
 {{< include 02-estructuras.qmd >}}
+{{< include 03-transformacion.qmd >}}
+{{< include 04-gracias.qmd >}}

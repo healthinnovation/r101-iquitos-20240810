@@ -1,6 +1,13 @@
-## Diego Villa Almeyda
+## Diego Villa Almeyda {.smaller}
 
-* BSc en Estadística Informática de la Universidad Nacional Agraria La Molina
+Algunos datos sobre mí:
+
+* BSc en Estadística Informática de la Universidad Nacional Agraria La Molina.
+* Data Analyst en el Laboratorio de Innovación en Salud, IMTAvH, UPCH.
+* Próximamente: MSc Statistics with Data Science, University of Edinburgh, UK.
+* Quería estudiar Biología. Ahora hubiera querido estudiar Matemáticas.
+* Intereses académicos: Modelos de regresión, modelamiento espacio-temporal, estadística Bayesiana, inferencia causal, aprendizaje de máquina.
+* Intereses personales: Música, gym rat, foodie, ciclismo, películas y series.
 
 
 ## Agenda
@@ -8,6 +15,3 @@
 * ¿Qué es R?
 * Representando datos
 * Tranformando datos
-* Funciones
-* _Tidy data_
-* Visualizando datos

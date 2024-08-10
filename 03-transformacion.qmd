@@ -1,0 +1,476 @@
+# Transformando datos
+
+## Temperatura mínima
+
+Creemos un script de R llamado `iquitos.R` y leamos los datos diarios de temperatura mínima en C° en Iquitos durante el año 2022:
+
+```{r}
+url <- "https://raw.githubusercontent.com/healthinnovation/r101-iquitos-20240810/main/data/iquitos.csv"
+iquitos <- read.csv(url)
+```
+
+## Temperatura mínima
+
+Veamos el vector de temperaturas mínimas:
+
+```{r}
+iquitos$temp_min
+```
+
+## Ordenando un vector
+
+Podemos usar la función `sort()` para ordenar el vector temperaturas mínimas de manera ascendente:
+
+```{r}
+sort(iquitos$temp_min)
+```
+
+## Ordenando un vector
+
+Podemos usar el argumento `decreasing` para indicarle a `sort()` que queremos ordenar el vector manera descendente:
+
+```{r}
+sort(iquitos$temp_min, decreasing = TRUE)
+```
+
+## Valores atípicos
+
+Vemos que los menores valores de la temperatura parecen ser valores atípicos. Digamos que queremos eliminar los primeros 5 valores atípicos. ¿Cómo los eliminamos?
+
+```{r}
+temps <- sort(iquitos$temp_min)
+```
+
+## Valores atípicos
+
+Recordemos que podemos acceder a cada elemento del vecto usando la notación de corchetes:
+
+```{r}
+temps[1]
+temps[2]
+temps[3]
+temps[4]
+temps[5]
+```
+
+Sin embargo, lo que queremos es extraer todos estos valores en un solo vector.
+
+## Indexación de vectores
+
+Hasta ahora hemos visto que podemos acceder a los elementos de un vector uno por uno:
+
+![](images/temps-index-1.png){.absolute top=250 left=20}
+
+## Indexación de vectores
+
+También podemos usar un vector para acceder a más de una elemento del vector:
+
+![](images/temps-index-2.png){.absolute top=250 left=20}
+
+## Indexación de vectores
+
+En R:
+
+```{r}
+temps[c(1, 2, 3, 4, 5)]
+```
+
+## Indexación de vectores
+
+También podemos usar el operador `:` para generar una secuencia regular:
+
+```{r}
+temps[1:5]
+```
+
+## Indexación de vectores
+
+Sin embargo, todavía no hemos removido estos valores atípico. Para eliminar elementos de un vector, debemos pasar índices negativos:
+
+```{r}
+temps[-c(1, 2, 3, 4, 5)]
+```
+
+## Valores atípicos
+
+¿Qué tal si tuviéramos datos de temperatura de otro distrito? ¿Simpre los valores atípicos van a ser los 5 valores menores?
+
+. . .
+
+Lo mejor sería establecer un umbral. Valores menores a este umbral serían considerados valores atípicos.
+
+## Expresiones lógicas
+
+Para saber si un valor es menor al umbral, necesitamos comparar sus magnitudes. En R, esto se puede hacer mediante _operadores de comparación_:
+
+* `==` se lee "es igual a",
+* `!=` se lee "es diferente a",
+* `>` se lee "es mayor a",
+* `>=` se lee "es mayor o igual a",
+* `<` se lee "es menor a",
+* `<=` se lee "es menor o igual a".
+
+## Expresiones lógicas
+
+Por ejemplo, al evaluar el enunciado `a < b`, dos resultados son posibles:
+
+* `a` es de hecho menor a `b`, por lo cual el enunciado es verdadero, o
+* `a` no es menor a `b`, por lo cual el enunciado es falso.
+
+En el primer caso, R devuelve un valor lógico de `TRUE`, mientras que en el segundo devuelve un valor lógico de `FALSE`.
+
+## Expresiones lógicas
+
+Debido a que el resulado de una comparación puede tomar solo dos valores lógicos, a los enunciados de comparación se les conoce como __expresiones lógicas__.
+
+## Expresiones lógicas
+
+Por ejemplo, si definimos que las temperaturas menores a 19 C° son valores atípicos, necesitamos comparar cada elemento de `temps` con este umbral:
+
+```{r}
+temps[1] < 19
+temps[2] < 19
+temps[3] < 19
+temps[4] < 19
+temps[5] < 19
+temps[6] < 19
+```
+
+## Vectorización
+
+Recordemos que las funciones en R está vectorizadas. Los operadores también actuan como funciones, por tanto también tienen la propiedad de vectorización:
+
+```{r}
+temps < 19
+```
+
+En este caso, R devuelve un __vector lógico__, el cual indica el resultado de la comparación de cada elemento de `temps` con el valor 19.
+
+## Indexación de vectores
+
+Volviendo al problema de indexación, en R podemos utilizar la función `which()` para saber cuáles son los índices del vector `temps` que son menores a 19 automáticamente:
+
+```{r}
+which(temps < 19)
+```
+
+## Indexación de vectores
+
+De esta manera, podemos indicarle a R que elimine los valores atípicos usando los negativos de los índices:
+
+```{r}
+temps[-which(temps < 19)]
+```
+
+## Operadores lógicos
+
+¿Qué tal si quisiéramos incluir a las temperatures mayores a 24.6 C° como valores atípicos? Para esto, necesitamos hacer uso de __operadores lógicos__, es decir, operadores que trabajen sobre valores lógicos:
+
+* `&` representa al operador lógico "Y",
+* `|` representa al operador lógico "O",
+* `!` representa al operador lógico de negación o "NO".
+
+`&` y `|` funcionan con vectores lógicos. Para comparar valores individuales debemos usar `&&` y `||`.
+
+## Operadores lógicos
+
+Con los operadores lógicos, podemos construir las tablas lógicas:
+
+![](images/oper-log.png){.absolute top=200 left=20}
+
+## Operadores lógicos
+
+Para el caso de la negación:
+
+![](images/negacion.png){.absolute top=150 left=300}
+
+## Operadores lógicos
+
+En R:
+
+```{r}
+temps < 19 | temps > 24.6
+```
+
+## Indexación de vectores
+
+Ahora con `which()`:
+
+```{r}
+temps[which(temps < 19 | temps > 24.6)]
+```
+
+Si quisiéramos eliminar los valores atípicos:
+
+```{r}
+temps[-which(temps < 19 | temps > 24.6)]
+```
+
+## Indexación con vectores lógicos
+
+De hecho, usar `which()` es innecesario. Podemos acceder o filtrar a los elementos que queramos usando el vector lógico:
+
+![](images/index-log-1.png){.absolute top=250 left=15}
+
+## Indexación con vectores lógicos
+
+De hecho, usar `which()` es innecesario. Podemos acceder o filtrar a los elementos que queramos usando el vector lógico:
+
+![](images/index-log-2.png){.absolute top=250 left=100}
+
+## Indexación con vectores lógicos
+
+En R:
+
+```{r}
+temps[temps < 19 | temps > 24.6]
+```
+
+## Indexación con vectores lógicos
+
+Si quisiéramos quedarnos con los elementos que no son valores atípicos podemos usar el operador de negación `!`:
+
+```{r}
+temps[!(temps < 19 | temps > 24.6)]
+```
+
+## Indexación con vectores lógicos
+
+Definimos nuestros vectores
+
+```{r}
+filtro <- (temps < 19 | temps > 24.6)
+no_outliers <- temps[!filtro]
+outliers <- temps[filtro]
+```
+
+## Dengue
+
+Creemos un script de R llamado `dengue_casos.R` y carguemos a nuestro conjunto de datos de Dengue:
+
+```{r}
+dengue <- read.csv("dengue.csv")
+```
+
+## Funciones lógicas
+
+Sabemos que hay casos en los que no se registró la localidad. Es decir, donde la localidad es un `NA`.
+
+. . . 
+
+Para identificar los `NA`s, podemos usar la __función lógica__ `is.na()`, la cual devuelve `TRUE` si el valor que se le pase es un `NA` y `FALSE` en el caso contrario.
+
+## Funciones lógicas
+
+Si quisiéramos filtrar los casos (filas) en donde no se registró la localidad, podemos hacer uso de la función lógica `is.na()` y la notación de corchetes:
+
+```{r}
+dengue[is.na(dengue$localidad), ]
+```
+
+## Funciones lógicas
+
+Si, por el contrario, quisiéramos filtrar los casos en los que sí se registró la localidad, entonces negamos a la función lógica:
+
+```{r}
+dengue[!is.na(dengue$localidad), ]
+```
+
+## Funciones lógicas
+
+Existen otras funciones lógicas:
+
+* `is.nan()` para valores no definidos,
+* `is.infinite()` para valores infinitos,
+* `is.null()` para valores nulos,
+* etc.
+
+## subset()
+
+En R existe una función para hacer filtrar filas sin usar la notación por corchetes llamada `subset()`:
+
+```{r}
+subset(dengue, !is.na(localidad))
+```
+
+No es necesario poner `dengue$localidad` ya que `subset()` reconoce el nombre de las columnas en el data frame.
+
+## subset()
+
+Guardemos los datos que contienen todas las localidades en un nuevo objeto:
+
+```{r}
+dengue_limpio <- subset(dengue, !is.na(localidad))
+```
+
+## Dengue
+
+Digamos que queramos calcular el número de casos notificados por cada tipo de Dengue durante los años 2018 y 2019:
+
+```{r}
+unique(dengue_limpio$enfermedad)
+```
+
+¿Cómo filtramos por tipo de enfermedad?
+
+## Dengue
+
+Por ejemplo, para los casos de dengue con señales de alarma:
+
+```{r}
+filtro_alarma <- dengue_limpio$enfermedad == "DENGUE CON SEÑALES DE ALARMA"
+```
+
+## Dengue
+
+Utilizamos `subset()`:
+
+```{r}
+subset(dengue_limpio, filtro_alarma)
+```
+
+Guardamos el resultado en nuevo objeto:
+
+```{r}
+dengue_alarma <- subset(dengue_limpio, filtro_alarma)
+```
+
+## Dengue
+
+¿Cómo podemos saber cuánto casos notificados de dengue con señales de alarma hubieron? Podemos calcular el número de filas de `dengue_alarma`:
+
+```{r}
+nrow(dengue_alarma)
+```
+
+## Menú
+
+Creemos ahora un programa que le permita al usuario decidir de qué tipo de dengue calcular el número de casos registrados. Empecemos por crear un vector con los valores únicos de `dengue$enfermedad`:
+
+```{r}
+enfermedades <- unique(dengue_limpio$enfermedad)
+```
+
+Y ahora, creemos un menú que liste los tipos de enfermedad usando la función `cat()`:
+
+```{r}
+cat("1: ", enfermedades[1])
+cat("2: ", enfermedades[2])
+cat("3: ", enfermedades[3])
+```
+
+## Menú
+
+A diferencia de `print()`, la función `cat()` concatena sus argumentos imprime los resultados en la consola como texto, no como un vector.
+
+## Caracteres de escape
+
+Los caracteres de escape sirven para insertar caracteres especiales en una cadena de caracteres. Por ejemplo:
+
+* `\n` inserta un salto de línea.
+* `\t` inserta una tabulación (`TAB` en el teclado).
+
+## Caracteres de escape
+
+Mejoremos nuestro menú:
+
+```{r}
+cat("1: ", enfermedades[1], "\n")
+cat("2: ", enfermedades[2], "\n")
+cat("3: ", enfermedades[3], "\n")
+```
+
+## Menú
+
+¿Qué pasaría si tengo muchas opciones? Podemos vectorizar el menú:
+
+```{r}
+cat(enfermedades, "\n")
+```
+
+Esto no es lo que esperábamos.
+
+## Menú
+
+Si vemos la página de ayuda de `cat()`, hay un argumento llamado `sep` que inserta un caracter en cada elemento del vector que ingresemos. Podemos probar pasando el caracter de escape `\n` a este argumento:
+
+```{r}
+cat(enfermedades, sep = "\n")
+```
+
+## Menú
+
+Faltaría agregar los número para que el usuario no tenga que escribir todo el texto de la enfermedad. Podemos aprovechar la propiedad de vectorización de `paste()` para crear un vector con las opciones:
+
+```{r}
+paste0(1:3, ". ",  enfermedades)
+```
+
+## Menú
+
+¿Qué pasaría si tengo más de 3 opciones? Podemos hacer que la secuencia de adapte al número de opciones usango la función `length()` que calcula el número de elementos de un vector:
+
+```{r}
+opciones <- paste0(1:length(enfermedades), ". ",  enfermedades)
+```
+
+## Menú
+
+Ahora sí podemos mostrar correctamente el menú:
+
+```{r}
+cat(opciones, sep = "\n")
+```
+
+## Entrada de usuario
+
+Ahora, pedimos al usuario que ingrese la opción que desee:
+
+```{r}
+opcion <- readline("Opción (solo número): ")
+```
+
+## Entrada de usuario
+
+Estas opciones corresponden a los índices del vector `enfermedad`. Por lo tanto, podemos filtrar la enfermedad que el usuario desea:
+
+```{r}
+enfermedades[opcion]
+```
+
+¿Qué salió mal?
+
+## Entrada de usuario
+
+El problema fue que no convertimos la opción a un valor numérico:
+
+```{r}
+opcion <- as.integer(readline("Opción (solo número): "))
+enfermedades[opcion]
+```
+
+## Dengue
+
+Ahora, filtramos con `subset()`:
+
+```{r}
+enfermedad <- enfermedades[opcion]
+dengue_opcion <- subset(dengue_limpio, enfermedad == filtro_enfermedad)
+```
+
+Y calculamos el número de casos:
+
+```{r}
+casos <- nrow(dengue_opcion)
+```
+
+## Dengue
+
+Por último, mostramos el mensaje con el resultado al usuario:
+
+```{r}
+cat("Se reportaron", casos, "de", enfermedad, "en la provincia de Maynas en 2018 y 2019.")
+```
+
+
+
